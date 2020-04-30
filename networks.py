@@ -21,6 +21,7 @@ class Generator(nn.Module):
         # Calculate number of pixels shaved in the forward pass
         self.output_size = self.forward(torch.FloatTensor(torch.ones([1, 1, conf.input_crop_size, conf.input_crop_size]))).shape[-1]
         self.forward_shave = int(conf.input_crop_size * conf.scale_factor) - self.output_size
+        print('The input shape is {}, Output shape is {} for the Generator'.format(str(conf.input_crop_size), str(self.output_size)))
 
     def forward(self, input_tensor):
         # Swap axis of RGB image for the network to get a "batch" of size = 3 rather the 3 channels
